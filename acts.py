@@ -1,5 +1,45 @@
 import streamlit as st
-st.set_page_config(page_title="⏳ Múltiples Barras de Progreso", layout="centered")
+
+st.set_page_config(page_title="📝 Encuesta de Satisfacción", layout="centered")
+st.title("📝 Encuesta de satisfacción del servicio")
+
+with st.expander("ℹ️ Acerca de esta encuesta"):
+    st.write("Tu opinión nos ayuda a mejorar. Por favor responde sinceramente las siguientes preguntas. ¡Gracias!")
+
+with st.form("encuesta_usuario"):
+    st.subheader("📋 Tus respuestas")
+
+    nombre = st.text_input("1. ¿Cuál es tu nombre?")
+    edad = st.slider("2. ¿Cuál es tu edad?", 18, 99, 25)
+    genero = st.radio("3. ¿Con qué género te identificas?", ["Masculino", "Femenino", "Otro", "Prefiero no decir"])
+    satisfaccion = st.slider("4. ¿Qué tan satisfecho estás con nuestro servicio?", 1, 10, 5)
+    recomendar = st.radio("5. ¿Recomendarías nuestro servicio a otras personas?", ["Sí", "No", "Tal vez"])
+    frecuencia = st.selectbox("6. ¿Con qué frecuencia usas nuestro servicio?", ["Diario", "Semanal", "Mensual", "Ocasional", "Primera vez"])
+    canal = st.selectbox("7. ¿Dónde nos conociste?", ["Redes sociales", "Publicidad", "Amigo/Familiar", "Otro"])
+    opinion = st.text_area("8. ¿Qué te gustó más del servicio?")
+    mejora = st.text_area("9. ¿Qué podríamos mejorar?")
+    privacidad = st.checkbox("10. Acepto que mis respuestas se utilicen de forma anónima para mejorar el servicio.")
+
+    enviado = st.form_submit_button("Enviar encuesta")
+
+if enviado:
+    st.success("✅ ¡Gracias por responder la encuesta!")
+    st.markdown(f"""
+    ### 🧾 Resumen de tus respuestas:
+    - **Nombre:** {nombre}
+    - **Edad:** {edad}
+    - **Género:** {genero}
+    - **Satisfacción:** {satisfaccion}/10
+    - **¿Recomienda?:** {recomendar}
+    - **Frecuencia de uso:** {frecuencia}
+    - **Canal de contacto:** {canal}
+    - **Lo que te gustó:** {opinion}
+    - **Sugerencia de mejora:** {mejora}
+    - **Acepta uso anónimo:** {"Sí" if privacidad else "No"}
+    """)
+else:
+    st.info("📌 Completa la encuesta y presiona 'Enviar encuesta' para ver el resumen.")
+
 import time
 
 
