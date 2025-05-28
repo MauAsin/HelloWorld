@@ -1,6 +1,19 @@
 import streamlit as st
 
 st.set_page_config(page_title="📦 Métricas logísticas", layout="centered")
+import pandas as pd
+import numpy as np
+
+st.title("🚛 Dashboard Logístico Personalizado")
+st.write("Este tema visual fue definido desde el archivo `.streamlit/config.toml` 🎨")
+
+# Simulación simple de datos
+data = pd.DataFrame(np.random.randn(20, 3), columns=['Tiempo', 'Retrasos', 'Entregas'])
+st.line_chart(data)
+
+# Slider de prueba visual
+num = st.sidebar.slider("Selecciona un valor", 0, 100, 50)
+st.write("📊 Valor seleccionado:", num)
 
 
 st.header("🧠 Cuestionario rápido con `st.selectbox`")
