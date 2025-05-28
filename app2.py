@@ -126,3 +126,33 @@ ax2.set_title(f"Dispersión entre {col_x} y {col_y}")
 st.pyplot(fig2)
 
 
+from datetime import time, datetime
+
+st.set_page_config(page_title="🕹️ Sliders Interactivos", layout="centered")
+st.header("🎯 Ejemplo personalizado con 4 sliders")
+
+# Slider 1 - Nivel de energía (entero simple)
+st.subheader("⚡ ¿Qué tan cargado estás hoy?")
+energia = st.slider("Nivel de energía (0 = muerto, 100 = modo Dios)", 0, 100, 50)
+st.write("🔋 Nivel actual de energía:", energia)
+
+# Slider 2 - Rango de temperatura deseada
+st.subheader("🌡️ Selecciona tu rango de temperatura ideal")
+temp_range = st.slider("Temperatura en °C", -10.0, 50.0, (20.0, 25.0))
+st.write("🌞 Temperatura ideal: entre", temp_range[0], "°C y", temp_range[1], "°C")
+
+# Slider 3 - Rango de horas para entrenar
+st.subheader("🏀 ¿A qué hora entrenas?")
+entreno = st.slider("Rango de entrenamiento", value=(time(18, 0), time(20, 0)))
+st.write("🕒 Entrenamiento programado de:", entreno[0], "a", entreno[1])
+
+# Slider 4 - Fecha y hora de tu siguiente proyecto
+st.subheader("📅 ¿Cuándo arranca tu próximo proyecto importante?")
+inicio_proyecto = st.slider(
+    "Selecciona fecha y hora",
+    value=datetime(2025, 6, 1, 10, 0),
+    format="MM/DD/YY - hh:mm"
+)
+st.write("🚀 El proyecto comienza el:", inicio_proyecto)
+
+
