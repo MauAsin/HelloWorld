@@ -1,4 +1,36 @@
 import streamlit as st
+import pandas as pd
+
+st.set_page_config(page_title="📂 Uploader múltiple", layout="centered")
+st.title('📤 Carga de múltiples archivos CSV')
+st.write("Sube dos archivos distintos para analizarlos en la app.")
+
+# Primer archivo
+st.subheader('📦 Archivo de entregas')
+entregas_file = st.file_uploader("Sube el archivo de entregas", type=['csv'], key="entregas")
+
+if entregas_file is not None:
+    df_entregas = pd.read_csv(entregas_file)
+    st.write("✅ Entregas - Vista previa:")
+    st.dataframe(df_entregas)
+    st.write("📊 Estadísticas del archivo de entregas:")
+    st.write(df_entregas.describe())
+else:
+    st.info("☝️ Sube un archivo CSV con información de entregas.")
+
+# Segundo archivo
+st.subheader('👥 Archivo de clientes')
+clientes_file = st.file_uploader("Sube el archivo de clientes", type=['csv'], key="clientes")
+
+if clientes_file is not None:
+    df_clientes = pd.read_csv(clientes_file)
+    st.write("✅ Clientes - Vista previa:")
+    st.dataframe(df_clientes)
+    st.write("📊 Estadísticas del archivo de clientes:")
+    st.write(df_clientes.describe())
+else:
+    st.info("☝️ Sube un archivo CSV con información de clientes.")
+
 
 st.set_page_config(page_title="📦 Métricas logísticas", layout="centered")
 import pandas as pd
