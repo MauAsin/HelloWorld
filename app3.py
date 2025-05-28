@@ -1,8 +1,9 @@
 import streamlit as st
+st.set_page_config(page_title="📈 Línea de gráficos", layout="centered")
 import pandas as pd
 import numpy as np
 
-st.set_page_config(page_title="📈 Línea de gráficos", layout="centered")
+
 st.header("📊 Visualización con `st.line_chart`")
 
 # Chart 1: Simulación de precios de Bitcoin
