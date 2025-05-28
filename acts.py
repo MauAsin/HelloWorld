@@ -1,5 +1,39 @@
 import streamlit as st
-st.set_page_config(page_title="🧩 App con Layout Avanzado", layout="wide")
+st.set_page_config(page_title="⏳ Múltiples Barras de Progreso", layout="centered")
+import time
+
+
+st.title("⏳ Múltiples Barras de Progreso")
+
+with st.expander("ℹ️ Acerca de esta app"):
+    st.write("Esta app demuestra cómo puedes usar varias barras de progreso en Streamlit que avancen a diferentes velocidades usando `st.progress`.")
+
+# Crear 3 barras
+bar1 = st.progress(0)
+bar2 = st.progress(0)
+bar3 = st.progress(0)
+
+st.write("🚀 Avanzando tareas...")
+
+# Simular progreso independiente
+for i in range(101):
+    # Barra rápida (sin pausa)
+    if i <= 100:
+        bar1.progress(i)
+
+    # Barra media (pausa corta)
+    if i <= 100:
+        time.sleep(0.02)
+        bar2.progress(i)
+
+    # Barra lenta (pausa más larga)
+    if i <= 100:
+        time.sleep(0.03)
+        bar3.progress(i)
+
+st.success("🎉 ¡Todas las tareas han terminado!")
+st.balloons()
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
