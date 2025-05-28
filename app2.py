@@ -128,7 +128,6 @@ st.pyplot(fig2)
 
 from datetime import time, datetime
 
-st.set_page_config(page_title="🕹️ Sliders Interactivos", layout="centered")
 st.header("🎯 Ejemplo personalizado con 4 sliders")
 
 # Slider 1 - Nivel de energía (entero simple)
