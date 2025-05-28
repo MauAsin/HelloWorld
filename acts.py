@@ -1,7 +1,54 @@
 import streamlit as st
+st.set_page_config(page_title="🧩 App con Layout Avanzado", layout="wide")
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="📂 Uploader múltiple", layout="centered")
+# Configuración del layout
+
+st.title("🧩 Layout Streamlit con 5 Secciones")
+
+# 📌 Sección 1: Expander con información
+with st.expander("ℹ️ Acerca de esta app"):
+    st.write("Esta app muestra cómo usar distintos elementos de layout para organizar una interfaz limpia y poderosa con Streamlit.")
+    st.image("https://streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png", width=250)
+
+# 📌 Sección 2: Inputs en la barra lateral
+st.sidebar.header("📋 Entradas del usuario")
+nombre = st.sidebar.text_input("¿Cuál es tu nombre?")
+nivel = st.sidebar.slider("Nivel de satisfacción con esta app (1-10)", 1, 10, 5)
+opcion = st.sidebar.selectbox("¿Qué módulo te gustó más?", ["", "Gráficos", "Expander", "Multiselect", "Sidebar"])
+mostrar_tabla = st.sidebar.checkbox("¿Mostrar tabla de datos?")
+
+# 📌 Sección 3: Datos en columnas
+st.header("📊 Resultados personalizados")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if nombre:
+        st.success(f"👋 ¡Hola, {nombre}!")
+    else:
+        st.warning("👈 Por favor ingresa tu **nombre** en la barra lateral.")
+
+with col2:
+    st.info(f"🔢 Nivel de satisfacción: **{nivel}/10**")
+
+with col3:
+    if opcion != "":
+        st.write(f"✅ Te gustó más: **{opcion}**")
+    else:
+        st.write("👈 Elige un módulo que te haya gustado más.")
+
+# 📌 Sección 4: Visualización de datos
+st.subheader("📈 Visualización de datos simulados")
+data = pd.DataFrame(np.random.randn(20, 3), columns=["A", "B", "C"])
+st.line_chart(data)
+
+# 📌 Sección 5: Tabla expandible
+if mostrar_tabla:
+    with st.expander("🧮 Ver tabla completa"):
+        st.dataframe(data.describe())
+
 st.title('📤 Carga de múltiples archivos CSV')
 st.write("Sube dos archivos distintos para analizarlos en la app.")
 
