@@ -1,6 +1,8 @@
 import streamlit as st
 
-st.set_page_config(page_title="🧠 Cuestionario Interactivo", layout="centered")
+st.set_page_config(page_title="🧩 Selección Múltiple", layout="centered")
+
+
 st.header("🧠 Cuestionario rápido con `st.selectbox`")
 
 # Pregunta 1: Color favorito
@@ -37,3 +39,49 @@ poder = st.selectbox(
     ('Volar', 'Leer mentes', 'Ser invisible', 'Teletransportarte', 'Super fuerza')
 )
 st.write("💥 Tu superpoder elegido es:", poder)
+
+
+
+
+st.header("🧠 Cuestionario con Selección Múltiple (`st.multiselect`)")
+
+# Pregunta 1: Películas favoritas
+peliculas = st.multiselect(
+    "🎬 ¿Qué géneros de películas te gustan más?",
+    ['Acción', 'Comedia', 'Terror', 'Romance', 'Ciencia Ficción'],
+    default=['Acción', 'Comedia']
+)
+st.write("🎥 Géneros elegidos:", peliculas)
+
+# Pregunta 2: Actividades de fin de semana
+actividades = st.multiselect(
+    "🛋️ ¿Qué te gusta hacer los fines de semana?",
+    ['Dormir', 'Ver series', 'Salir con amigos', 'Leer', 'Hacer ejercicio'],
+    default=['Ver series', 'Salir con amigos']
+)
+st.write("📅 Actividades seleccionadas:", actividades)
+
+# Pregunta 3: Tipos de música
+musica = st.multiselect(
+    "🎧 ¿Qué géneros musicales disfrutas?",
+    ['Rock', 'Reggaetón', 'Pop', 'Clásica', 'Jazz'],
+    default=['Pop', 'Reggaetón']
+)
+st.write("🎶 Tus géneros musicales favoritos:", musica)
+
+# Pregunta 4: Lenguajes de programación preferidos
+lenguajes = st.multiselect(
+    "👨‍💻 ¿Qué lenguajes de programación prefieres?",
+    ['Python', 'JavaScript', 'C++', 'Java', 'R'],
+    default=['Python', 'JavaScript']
+)
+st.write("💻 Lenguajes elegidos:", lenguajes)
+
+# Pregunta 5: Frutas favoritas
+frutas = st.multiselect(
+    "🍓 ¿Cuáles son tus frutas favoritas?",
+    ['Fresa', 'Plátano', 'Manzana', 'Mango', 'Sandía'],
+    default=['Mango', 'Fresa']
+)
+st.write("🍍 Frutas seleccionadas:", frutas)
+
