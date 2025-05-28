@@ -32,7 +32,7 @@ else:
     st.info("☝️ Sube un archivo CSV con información de clientes.")
 
 
-st.set_page_config(page_title="📦 Métricas logísticas", layout="centered")
+
 import pandas as pd
 import numpy as np
 
