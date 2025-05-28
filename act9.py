@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="🧩 Selección Múltiple", layout="centered")
+st.set_page_config(page_title="📦 Métricas logísticas", layout="centered")
 
 
 st.header("🧠 Cuestionario rápido con `st.selectbox`")
@@ -84,4 +84,29 @@ frutas = st.multiselect(
     default=['Mango', 'Fresa']
 )
 st.write("🍍 Frutas seleccionadas:", frutas)
+
+
+st.header("📦 ¿Qué métricas quieres ver en el dashboard de entregas?")
+
+st.write("Selecciona las métricas a mostrar:")
+
+# Checkboxes para seleccionar métricas
+on_time = st.checkbox("✅ Porcentaje de entregas a tiempo")
+avg_delay = st.checkbox("⏱️ Promedio de días de retraso")
+region_perf = st.checkbox("📍 Desempeño por región")
+weight_cat = st.checkbox("⚖️ Análisis por categoría de peso")
+weather_effect = st.checkbox("🌦️ Impacto del clima en entregas")
+
+# Respuestas según lo que seleccione el usuario
+if on_time:
+    st.write("✔️ Mostrando gráfico de entregas a tiempo...")
+if avg_delay:
+    st.write("📉 Cargando tabla con días promedio de retraso...")
+if region_perf:
+    st.write("🗺️ Mapa de rendimiento por región en camino...")
+if weight_cat:
+    st.write("📦 Segmentación de entregas por categoría de peso activada.")
+if weather_effect:
+    st.write("🌧️ Consultando correlación entre clima y demoras logísticas...")
+
 
