@@ -28,45 +28,34 @@ df_filtrado = df[(df['region'].isin(region)) & (df['año'] >= anio[0]) & (df['a�
 # =================== TÍTULO ===================
 st.title("🚛 Eficiencia en la Última Milla: ¿Entregamos Bien o Solo a Tiempo?")
 
-# =================== TABS ===================
-tab1, tab2 = st.tabs(["📊 Visualizaciones", "🗺️ Mapa y Dispersión"])
+# =================== VISUALIZACIONES ===================
+col1, col2 = st.columns(2)
 
-# =================== TAB 1 ===================
-with tab1:
-    col1, col2 = st.columns(2)
+with col1:
+    fig1 = px.histogram(df_filtrado, x="desviacion_entrega", nbins=30, title="📉 Distribución de Desviación en Entrega")
+    st.plotly_chart(fig1, use_container_width=True)
 
-    with col1:
-        fig1 = px.histogram(df_filtrado, x="desviacion_entrega", nbins=30, title="📉 Distribución de Desviación en Entrega")
-        st.plotly_chart(fig1, use_container_width=True)
+with col2:
+    fig2 = px.box(df_filtrado, x="region", y="costo_relativo_envio", title="💸 Costo Relativo de Envío por Región")
+    st.plotly_chart(fig2, use_container_width=True)
 
-    with col2:
-        fig2 = px.box(df_filtrado, x="region", y="costo_relativo_envio", title="💸 Costo Relativo de Envío por Región")
-        st.plotly_chart(fig2, use_container_width=True)
+col3, col4 = st.columns(2)
 
-    col3, col4 = st.columns(2)
+with col3:
+    promesas = df_filtrado.groupby("rango_distancia")["desviacion_vs_promesa"].mean().reset_index()
+    fig3 = px.bar(promesas, x="rango_distancia", y="desviacion_vs_promesa", title="📦 Desviación vs Promesa por Rango de Distancia")
+    st.plotly_chart(fig3, use_container_width=True)
 
-    with col3:
-        tiempo = df_filtrado.groupby("mes")["entrega_a_tiempo"].mean().reset_index()
-        tiempo["mes"] = tiempo["mes"].astype(str)
-        fig3 = px.line(tiempo, x="mes", y="entrega_a_tiempo", title="📈 % de Entregas a Tiempo por Mes")
-        st.plotly_chart(fig3, use_container_width=True)
-
-    with col4:
-        promesas = df_filtrado.groupby("rango_distancia")["desviacion_vs_promesa"].mean().reset_index()
-        fig4 = px.bar(promesas, x="rango_distancia", y="desviacion_vs_promesa", title="📦 Desviación vs Promesa por Rango de Distancia")
-        st.plotly_chart(fig4, use_container_width=True)
-
-# =================== TAB 2 ===================
-with tab2:
+with col4:
     mapa_df = df_filtrado.dropna(subset=['lat_origen', 'lon_origen'])
-
     fig_mapa = px.scatter_mapbox(mapa_df,
                                  lat="lat_origen",
                                  lon="lon_origen",
                                  hover_name="estado_del_cliente",
                                  zoom=3,
                                  height=500,
-                                 title="🗺️ Ubicación de Origen de Pedidos")
+                                 title="🗺️ Puntos de Origen de Entregas")
     fig_mapa.update_layout(mapbox_style="open-street-map")
     st.plotly_chart(fig_mapa, use_container_width=True)
+
 
