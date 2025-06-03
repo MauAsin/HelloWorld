@@ -8,7 +8,7 @@ st.set_page_config(page_title="🚛 Eficiencia en la Última Milla", layout="wid
 # =================== CARGA DE DATOS ===================
 @st.cache_data
 def load_data():
-    return pd.read_excel("Libro1.xlsx", sheet_name="Hoja2", engine="openpyxl")
+    return pd.read_csv("Libro1.csv")
 
 df = load_data()
 
@@ -69,3 +69,4 @@ with tab2:
                                  title="🗺️ Ubicación de Origen de Pedidos")
     fig_mapa.update_layout(mapbox_style="open-street-map")
     st.plotly_chart(fig_mapa, use_container_width=True)
+
