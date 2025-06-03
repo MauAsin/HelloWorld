@@ -8,11 +8,12 @@ st.set_page_config(page_title="🚛 Eficiencia en la Última Milla", layout="wid
 # =================== CARGA DE DATOS ===================
 @st.cache_data
 def load_data():
-    return pd.read_csv("Libro1.csv")
-
+    return pd.read_excel("Libro1.xlsx", sheet_name="Hoja2", engine="openpyxl")
 
 df = load_data()
-df['orden_compra_timestamp'] = pd.to_datetime(df['orden_compra_timestamp'])
+
+# =================== LIMPIEZA ===================
+df['orden_compra_timestamp'] = pd.to_datetime(df['orden_compra_timestamp'], errors='coerce')
 df['año'] = df['orden_compra_timestamp'].dt.year
 df['mes'] = df['orden_compra_timestamp'].dt.month
 
