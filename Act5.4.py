@@ -8,7 +8,8 @@ st.set_page_config(page_title="🚛 Eficiencia en la Última Milla", layout="wid
 # =================== CARGA DE DATOS ===================
 @st.cache_data
 def load_data():
-    return pd.read_excel("Libro1.xlsx", sheet_name="Hoja2")
+    return pd.read_csv("Libro1.csv")
+
 
 df = load_data()
 df['orden_compra_timestamp'] = pd.to_datetime(df['orden_compra_timestamp'])
